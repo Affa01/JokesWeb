@@ -5,8 +5,8 @@ namespace JokesWeb.Models {
       [Key]
       public int Id { get; set; }
       [Required]
-      public string JokesQuestion { get; set; }
+      public string? JokeQuestion { get; set; }
       [Required]
-      public string JokesAnswer { get; set; }
+      public string? JokeAnswer { get; set; }
    }
 }

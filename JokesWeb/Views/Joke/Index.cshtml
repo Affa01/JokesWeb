@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Joke>
+@{
+   ViewData["Title"] = "Index";
+}
+
+<h1>Index Jokes</h1>
+
+<table class="table table-bordered table-striped" style="width:100%">
+   <thead>
+      <tr>
+         <th>
+            Joke Question
+         </th>
+         <th>
+            Joke Answer
+         </th>
+      </tr>
+   </thead>
+   <tbody>
+      @foreach (var obj in Model) {
+         <tr>
+            <th width="40%">
+               @obj.JokeQuestion
+            </th>
+            <th width="40%">
+               @obj.JokeAnswer
+            </th>
+         </tr>
+      }
+   </tbody>
+</table>
