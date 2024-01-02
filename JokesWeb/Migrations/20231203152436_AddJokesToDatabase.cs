@@ -4,7 +4,7 @@
 
 namespace JokesWeb.Migrations
 {
-    public partial class AddJokeToDatabase : Migration
+    public partial class AddJokesToDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

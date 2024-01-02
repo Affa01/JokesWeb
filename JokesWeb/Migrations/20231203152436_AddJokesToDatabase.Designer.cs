@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JokesWeb.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231203121612_AddJokeToDatabase")]
-    partial class AddJokeToDatabase
+    [Migration("20231203152436_AddJokesToDatabase")]
+    partial class AddJokesToDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -31,11 +31,11 @@ namespace JokesWeb.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("JokesAnswer")
+                    b.Property<string>("JokeAnswer")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("JokesQuestion")
+                    b.Property<string>("JokeQuestion")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
