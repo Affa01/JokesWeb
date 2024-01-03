@@ -26,12 +26,44 @@ namespace JokesWeb.Controllers {
       [ValidateAntiForgeryToken]
       public ActionResult Create(Joke obj) {
          if (ModelState.IsValid) {
-            // Here, you would typically save the joke to a database.
-            // For simplicity, let's assume you have a JokeRepository.
-            // JokeRepository.Save(joke);
+
             _context.Add(obj);
             _context.SaveChangesAsync();
-            // Redirect to the index page or any other page after successful submission.
+            TempData["success"] = "Joke created successfully";
+            return RedirectToAction("Index");
+         }
+
+         return View(obj);
+      }
+
+
+
+
+
+      //GET
+      public IActionResult Edit(int? id) {
+         if (id == null || id == 0) { 
+            return NotFound();
+         }
+         var JokefromDb = _context.Jokes.Find(id);
+         //var JokefromDbFisrt = _context.Jokes.FirstOrDefault(j => j.Id == id);
+         //var JokefromDbSingle = _context.Jokes.SingleOrDefault(j => j.Id == id);
+
+         if (JokefromDb == null) { 
+            return NotFound(); 
+         }
+
+         return View(JokefromDb);
+      }
+
+      // POST
+      [HttpPost]
+      [ValidateAntiForgeryToken]
+      public ActionResult Edit(Joke obj) {
+         if (ModelState.IsValid) {
+            _context.Update(obj);
+            _context.SaveChangesAsync();
+            TempData["success"] = "Joke updated successfully";
             return RedirectToAction("Index");
          }
 
@@ -39,13 +71,40 @@ namespace JokesWeb.Controllers {
       }
 
       //GET
-      public IActionResult Editar() {
-         return View();
+      public IActionResult Delete(int? id) {
+         if (id == null || id == 0) {
+            return NotFound();
+         }
+         var JokefromDb = _context.Jokes.Find(id);
+         //var JokefromDbFisrt = _context.Jokes.FirstOrDefault(j => j.Id == id); outra maneira de ir buscar a Joke
+         //var JokefromDbSingle = _context.Jokes.SingleOrDefault(j => j.Id == id); outra maneira de ir buscar a Joke
+
+         if (JokefromDb == null) {
+            return NotFound();
+         }
+
+         return View(JokefromDb);
       }
 
-      //GET
-      public IActionResult Eliminar() {
-         return View();
+      // POST
+      [HttpPost,ActionName("Delete")]
+      [ValidateAntiForgeryToken]
+      public ActionResult DeletePOST(int? id) {
+
+         var obj = _context.Jokes.Find(id);
+
+         if (obj == null) {
+            return NotFound();   
+         }
+
+         if (ModelState.IsValid) {
+            _context.Remove(obj);
+            _context.SaveChangesAsync();
+            TempData["success"] = "Joke deleted successfully";
+            return RedirectToAction("Index");
+         }
+
+         return View(obj);
       }
    }
 }
