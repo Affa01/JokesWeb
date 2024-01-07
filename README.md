@@ -1,2 +1,2 @@
-This repository is supose to be a website where I should to to work with MVC ASP.NET.
-  - In this project you will be able to create edit and delete jokes in a database.
+This project is made in asp.net mvc and ii shows how to CRUD (Create, Read, Update and Delete) 
+  -for the database I used SQL server.
